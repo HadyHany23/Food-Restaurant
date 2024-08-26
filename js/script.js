@@ -7,6 +7,20 @@ $(document).ready(function () {
   $(window).on("scroll load", function () {
     $("#menu-bar").removeClass("fa-times");
     $(".navbar").removeClass("nav-toggle");
+
+    // scroll spy
+
+    $("section").each(function () {
+      let top = $(window).scrollTop();
+      let offset = $(this).offest().top - 200;
+      let height = $(this).height();
+      let id = $(this).attr("id");
+
+      if (top > offset && top < offset + height) {
+        $(".navbar ul li a").removeClass("active");
+        $(".navbar").find(`[href="#${id}"]`).addClass("active");
+      }
+    });
   });
 
   $(".menu .list .btn").click(function () {
